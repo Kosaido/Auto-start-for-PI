@@ -1,0 +1,13 @@
+[Unit]
+Description=Auto GPS position check on boot
+After=microxrce-agent.service
+Requires=microxrce-agent.service
+
+[Service]
+ExecStart=/home/pi/run_gps_position_check.sh
+Restart=on-failure
+RestartSec=3
+User=pi
+
+[Install]
+WantedBy=multi-user.target

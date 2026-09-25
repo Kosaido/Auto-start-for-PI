@@ -1,0 +1,30 @@
+[Unit]
+Description=MicroXRCEAgent bridge to PX4
+After=network.target
+
+[Service]
+# NO "sudo" here -- a systemd service can't type a password, so sudo
+# will just fail silently on boot. Two ways to run without it:
+#
+# OPTION A (recommended): give the pi user serial-port permission
+# directly, then run as an unprivileged user, User=pi below.
+# One-time setup (run this yourself over SSH first, then reboot):
+#     sudo usermod -a -G dialout pi
+# After that reboot, confirm you can run the line below WITHOUT sudo
+# and without a password prompt before trusting this service file.
+#
+# OPTION B (quicker, less clean): change User=pi to User=root below
+# and skip Option A entirely -- root doesn't need sudo to do anything.
+#
+# Also confirm this path is actually right for your install:
+#     which MicroXRCEAgent
+# (you ran it via plain "MicroXRCEAgent", so it must already be
+# somewhere on your PATH -- this is the standard install location if
+# you built it with the default "sudo make install", but verify).
+ExecStart=/usr/local/bin/MicroXRCEAgent serial --dev /dev/ttyAMA0 -b 921600
+Restart=on-failure
+RestartSec=3
+User=pi
+
+[Install]
+WantedBy=multi-user.target
