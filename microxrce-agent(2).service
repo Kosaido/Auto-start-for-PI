@@ -24,7 +24,7 @@ After=network.target
 ExecStart=/usr/local/bin/MicroXRCEAgent serial --dev /dev/ttyAMA0 -b 921600
 Restart=on-failure
 RestartSec=3
-User=pi
+User=car
 
 [Install]
 WantedBy=multi-user.target
