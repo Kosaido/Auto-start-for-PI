@@ -4,10 +4,10 @@ After=microxrce-agent.service
 Requires=microxrce-agent.service
 
 [Service]
-ExecStart=/home/pi/run_gps_position_check.sh
+ExecStart=/home/car/run_gps_position_check.sh
 Restart=on-failure
 RestartSec=3
-User=pi
+User=car
 
 [Install]
 WantedBy=multi-user.target
